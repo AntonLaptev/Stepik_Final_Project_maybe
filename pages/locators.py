@@ -5,3 +5,12 @@ class MainPageLocators:
 class LoginPageLocators:
     LOGIN_FORM = ("id", "login_form")
     REGISTER_FORM = ("id", "register_form")
+
+
+class ProductPageLocators:
+    ADD_TO_BASKET_BUTTON = ("class name", "btn-add-to-basket")
+    PRODUCT_TITLE = ("css selector", ".product_main h1")
+    PRODUCT_AVAILABLE = ("css selector", ".product_main .instock .icon-ok")
+    PRODUCT_PRICE = ("css selector", ".product_main p.price_color")
+    MESSAGE_ADD_PRODUCT_OK = ("css selector", ".alert-success  .alertinner strong")
+    MESSAGE_ADD_PRODUCT_PRICE_OK = ("css selector", ".alert-info  .alertinner strong")

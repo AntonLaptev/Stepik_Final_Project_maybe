@@ -8,7 +8,7 @@ from selenium.webdriver.firefox.options import Options
 
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser: chrome or firefox")
-    parser.addoption('--language', action='store', default='es', help="Choose lang")
+    parser.addoption('--language', action='store', default='ru', help="Choose language browser")
 
 
 @pytest.fixture(scope="function")
@@ -18,21 +18,20 @@ def user_lang(request):
 
 
 @pytest.fixture(scope="function")
-def browser(request):
+def browser(request, user_lang):
     browser_name = request.config.getoption("browser_name")
     # browser = None
-    user_language = request.config.getoption("language")
     if browser_name == "chrome":
+        print(f"\nstart {browser_name} browser, user language {user_lang} for test..")
         options = webdriver.ChromeOptions()
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+        options.add_experimental_option('prefs', {'intl.accept_languages': user_lang})
         browser = webdriver.Chrome(options=options)
-        print("\nstart chrome browser for test..")
     elif browser_name == "firefox":
+        print(f"\nstart {browser_name} browser, user language {user_lang} for test..")
         options = Options()
-        options.set_preference("intl.accept_languages", user_language)
+        options.set_preference("intl.accept_languages", user_lang)
         browser = Firefox(options=options)
-        print("\nstart firefox browser for test..")
     else:
         raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser
