@@ -1,5 +1,10 @@
-class MainPageLocators:
+class BasePageLocators:
     LOGIN_LINK = ("css selector", "#login_link")
+    LOGIN_LINK_INVALID = ("css selector", "#login_link_inc")
+
+
+# class MainPageLocators:
+#    LOGIN_LINK = ("css selector", "#login_link")
 
 
 class LoginPageLocators:
