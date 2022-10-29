@@ -33,11 +33,11 @@ class ProductPage(BasePage):
                                                                                     "available"
 
     def should_be_message_add_product_ok(self):
-        assert self.product_title in self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_PRODUCT_OK).text, \
+        assert self.product_title == self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_PRODUCT_OK).text, \
                                                                                             "Product was not added "
 
     def should_be_adding_product_price(self):
-        assert self.product_price in self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_PRODUCT_PRICE_OK).text,\
+        assert self.product_price == self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_PRODUCT_PRICE_OK).text,\
                                                                                         "Product price was not added"
 
     def put_product_to_the_basket(self):
