@@ -7,6 +7,10 @@ class ProductPage(BasePage):
     product_price = ''
     product_title = ''
 
+    def get_product_price_and_title_from_product_page(self):
+        self.product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        self.product_title = self.browser.find_element(*ProductPageLocators.PRODUCT_TITLE).text
+
     def put_product_to_the_basket(self):
         button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         button.click()
@@ -19,11 +23,9 @@ class ProductPage(BasePage):
 
     def should_be_product_price(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE), "There is no product price on product page"
-        self.product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
 
     def should_be_product_title(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_TITLE), "There is no product title on product page"
-        self.product_title = self.browser.find_element(*ProductPageLocators.PRODUCT_TITLE).text
 
     def should_be_available_product(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_AVAILABLE), "Product is not available"
