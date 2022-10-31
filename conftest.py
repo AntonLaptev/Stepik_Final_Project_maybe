@@ -1,9 +1,8 @@
-import pytest                       # этот файл может выполняться в тестах всех поддиректорий
+# этот файл может выполняться в тестах всех поддиректорий
+import pytest
 from selenium import webdriver
 from selenium.webdriver import Firefox
-# from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
-# запуск браузера
 
 
 def pytest_addoption(parser):
@@ -22,7 +21,7 @@ def browser(request, user_lang):
     browser_name = request.config.getoption("browser_name")
     # browser = None
     if browser_name == "chrome":
-        print(f"\nstart {browser_name} browser, user language {user_lang} for test..")
+        print(f"\nstart {browser_name} browser (user language - {user_lang}) for test..")
         options = webdriver.ChromeOptions()
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
         options.add_experimental_option('prefs', {'intl.accept_languages': user_lang})

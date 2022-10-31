@@ -37,14 +37,16 @@ class ProductPage(BasePage):
         self.should_be_adding_product_price()
 
     def should_be_message_add_product_ok(self):
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_ADD_PRODUCT_OK), "Product was not added"
         assert self.product_title == self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_PRODUCT_OK).text, \
-                                                                                            "Product was not added "
+            "Product title != Product title in the basket "
 
     def should_be_adding_product_price(self):
+        assert self.is_element_present(*ProductPageLocators.MESSAGE_ADD_PRODUCT_PRICE_OK), "Product price was not added"
         assert self.product_price == self.browser.find_element(*ProductPageLocators.MESSAGE_ADD_PRODUCT_PRICE_OK).text,\
-                                                                                        "Product price was not added"
+            "Product price != product price in basket"
 
-    def should_not_see_success_message_before_adding_product_to_basket(self):
+    def should_not_see_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.MESSAGE_ADD_PRODUCT_OK), \
             "Success message is presented, but should not be"
 
